@@ -1,39 +1,37 @@
 import { Request, Response } from "express";
-import { CategoryService } from "./category.service";
-import { Category } from "@prisma/client";
 
-const createCategory = async (req: Request, res: Response) => {
+import { BlogsService } from "./blogs.service";
+
+const createBlogs = async (req: Request, res: Response) => {
   try {
-    const result = await CategoryService.createCategory(req.body);
+    const result = await BlogsService.createBlogs(req.body);
     res.send({
       success: true,
-      message: " Create Category Successfully!",
+      message: " Create Successfully!",
       data: result,
     });
   } catch (err) {
     res.send(err);
   }
 };
-const getAllCategory = async (req: Request, res: Response) => {
+const getAllBlogs = async (req: Request, res: Response) => {
   try {
-    const result = await CategoryService.getAllCategory();
+    const result = await BlogsService.getAllBlogs();
     res.send({
       success: true,
-      message: "Get All Category Successfully! ",
+      message: "Get All Blogs Successfully! ",
       data: result,
     });
   } catch (err) {
     res.send(err);
   }
 };
-const singleCategory = async (req: Request, res: Response) => {
+const singleBlogs = async (req: Request, res: Response) => {
   try {
-    const result = await CategoryService.singelCategory(
-      parseInt(req.params.id)
-    );
+    const result = await BlogsService.singleBlogs(parseInt(req.params.id));
     res.send({
       success: true,
-      message: "Get Single Category Successfully! ",
+      message: "Get Single Blogs Successfully! ",
       data: result,
     });
   } catch (err) {
@@ -45,7 +43,7 @@ const updatePost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const data = req.body;
   try {
-    const result = await CategoryService.updatePost(id, data);
+    const result = await BlogsService.updateBlogs(id, data);
     res.send({
       success: true,
       message: " updated Successfully!",
@@ -59,7 +57,7 @@ const updatePost = async (req: Request, res: Response) => {
 const deletePost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   try {
-    const result = await CategoryService.deletePost(id);
+    const result = await BlogsService.deleteBlogs(id);
     res.send({
       success: true,
       message: " deleted Successfully!",
@@ -70,10 +68,10 @@ const deletePost = async (req: Request, res: Response) => {
   }
 };
 
-export const CategoryController = {
-  createCategory,
-  getAllCategory,
-  singleCategory,
+export const BlogsController = {
+  createBlogs,
+  getAllBlogs,
+  singleBlogs,
   updatePost,
   deletePost,
 };

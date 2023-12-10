@@ -26,10 +26,31 @@ model Service {
   id             Int      @id @default(autoincrement())
   title          String
   descripton     String
-  servicePicture String
+  servicePicture String?
   categoryId     Int
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  category Category @relation(fields: [categoryId], references: [id])
+  category Category  @relation(fields: [categoryId], references: [id])
+  Reviews  Reviews[]
+}
+
+model Reviews {
+  id        Int     @id @default(autoincrement())
+  stars     Int
+  contend   String
+  serviceId Int
+  service   Service @relation(fields: [serviceId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blogs {
+  id         Int      @id @default(autoincrement())
+  title      String
+  descripton String
+  Picture    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

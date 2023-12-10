@@ -1,8 +1,12 @@
 import express, { Application } from "express";
 import cors from "cors";
 import { CategoryRoutes } from "./modules/category/category.route";
+import { ServiceRoutes } from "./modules/category/service/service.route";
+import { BlogsRouters } from "./modules/category/blogs/blogs.route";
 const app: Application = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/v1", CategoryRoutes);
+app.use("/api/v1", ServiceRoutes);
+app.use("/api/v1", BlogsRouters);
 export default app;
