@@ -13,6 +13,18 @@ const createService = async (req: Request, res: Response) => {
     res.send(err);
   }
 };
+const createReview = async (req: Request, res: Response) => {
+  try {
+    const result = await ServicePost.createReview(req.body);
+    res.send({
+      success: true,
+      message: " Create Successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 const getService = async (req: Request, res: Response) => {
   console.log(req.query);
@@ -23,6 +35,7 @@ const getService = async (req: Request, res: Response) => {
       success: true,
       message: " get Service Successfully!",
       data: result,
+      total: result.total,
     });
   } catch (err) {
     res.send(err);
@@ -76,4 +89,5 @@ export const ServiceController = {
   singleService,
   updateService,
   deleteService,
+  createReview,
 };

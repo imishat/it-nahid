@@ -11,8 +11,9 @@ const createCategory = async (data: Category): Promise<Category> => {
 
 const getAllCategory = async () => {
   const result = await prisma.category.findMany();
+  const total = await prisma.category.count();
 
-  return result;
+  return { result, total };
 };
 
 const singelCategory = async (id: number) => {
