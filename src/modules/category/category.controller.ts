@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CategoryService } from "./category.service";
-import { Category } from "@prisma/client";
 
 const createCategory = async (req: Request, res: Response) => {
   try {
