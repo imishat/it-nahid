@@ -23,22 +23,25 @@ model Category {
 }
 
 model Service {
-  id             Int      @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   title          String
   descripton     String
   servicePicture String?
+  price          Int       @default(0)
   categoryId     Int
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  category Category  @relation(fields: [categoryId], references: [id])
-  Reviews  Reviews[]
+  subDescription String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  category       Category  @relation(fields: [categoryId], references: [id])
+  Reviews        Reviews[]
 }
 
 model Reviews {
   id        Int     @id @default(autoincrement())
   stars     Int
   contend   String
+  name String
+  email String
   serviceId Int
   service   Service @relation(fields: [serviceId], references: [id])
 

@@ -1,4 +1,4 @@
-import { PrismaClient, Service } from "@prisma/client";
+import { PrismaClient, Reviews, Service } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const createService = async (data: Service): Promise<Service> => {
@@ -51,8 +51,9 @@ const getAllService = async (options: any) => {
       ],
     },
   });
+  const total = await prisma.service.count();
 
-  return result;
+  return { result, total };
 };
 
 const singleService = async (id: number) => {
@@ -87,10 +88,18 @@ const deleteService = async (id: number): Promise<Service> => {
   });
   return result;
 };
+const createReview = async (data: any): Promise<Reviews> => {
+  const result = await prisma.reviews.create({
+    data,
+  });
+
+  return result;
+};
 export const ServicePost = {
   createService,
   getAllService,
   singleService,
   deleteService,
   updateService,
+  createReview,
 };

@@ -11,8 +11,9 @@ const createBlogs = async (data: Blogs): Promise<Blogs> => {
 
 const getAllBlogs = async () => {
   const result = await prisma.blogs.findMany();
+  const total = await prisma.blogs.count();
 
-  return result;
+  return { result, total };
 };
 
 const singleBlogs = async (id: number) => {

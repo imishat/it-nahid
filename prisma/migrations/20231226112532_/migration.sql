@@ -21,6 +21,7 @@ CREATE TABLE "Service" (
     "title" TEXT NOT NULL,
     "descripton" TEXT NOT NULL,
     "servicePicture" TEXT,
+    "price" INTEGER NOT NULL DEFAULT 0,
     "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

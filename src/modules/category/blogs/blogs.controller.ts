@@ -21,6 +21,7 @@ const getAllBlogs = async (req: Request, res: Response) => {
       success: true,
       message: "Get All Blogs Successfully! ",
       data: result,
+      // total: result.total,
     });
   } catch (err) {
     res.send(err);
