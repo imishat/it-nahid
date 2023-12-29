@@ -35,7 +35,7 @@ const getService = async (req: Request, res: Response) => {
       success: true,
       message: " get Service Successfully!",
       data: result,
-      total: result.total,
+      // total: result.total,
     });
   } catch (err) {
     res.send(err);
