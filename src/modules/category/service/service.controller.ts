@@ -26,8 +26,20 @@ const createReview = async (req: Request, res: Response) => {
   }
 };
 
+const getAllReview = async (req: Request, res: Response) => {
+  try {
+    const result = await ServicePost.getReview();
+    res.send({
+      success: true,
+      message: "All Review Get Successfully!",
+      data: result,
+      // total: result.total,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 const getService = async (req: Request, res: Response) => {
-  console.log(req.query);
   const options = req.query;
   try {
     const result = await ServicePost.getAllService(options);
@@ -83,11 +95,27 @@ const deleteService = async (req: Request, res: Response) => {
   }
 };
 
+const deleteReview = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  try {
+    const result = await ServicePost.deleteReviewOne(id);
+    res.send({
+      success: true,
+      message: "Review deleted Successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 export const ServiceController = {
   createService,
   getService,
   singleService,
   updateService,
+  deleteReview,
+  getAllReview,
   deleteService,
   createReview,
 };
