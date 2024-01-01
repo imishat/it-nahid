@@ -88,6 +88,15 @@ const deleteService = async (id: number): Promise<Service> => {
   });
   return result;
 };
+
+const deleteReviewOne = async (id: number): Promise<Reviews> => {
+  const result = await prisma.reviews.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
 const createReview = async (data: any): Promise<Reviews> => {
   const result = await prisma.reviews.create({
     data,
@@ -95,11 +104,18 @@ const createReview = async (data: any): Promise<Reviews> => {
 
   return result;
 };
+const getReview = async () => {
+  const result = await prisma.reviews.findMany();
+  const total = await prisma.reviews.count();
+  return { result, total };
+};
 export const ServicePost = {
   createService,
   getAllService,
   singleService,
   deleteService,
+  getReview,
+  deleteReviewOne,
   updateService,
   createReview,
 };
