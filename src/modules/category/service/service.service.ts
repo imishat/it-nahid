@@ -32,20 +32,17 @@ const getAllService = async (options: any) => {
           category: {
             name: {
               contains: searchTerm,
-              mode: "insensitive",
             },
           },
         },
         {
           title: {
             contains: searchTerm,
-            mode: "insensitive",
           },
         },
         {
           descripton: {
             contains: searchTerm,
-            mode: "insensitive",
           },
         },
       ],
